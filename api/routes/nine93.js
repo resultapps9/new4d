@@ -19,28 +19,22 @@ router.get('/', (req, res, next) => {
       const $ = cheerio.load(html);
         let list = $("body");
         let strarray = list.html()
-        let newStrng = strarray.replace("a0","a").replace("a1","b").replace("a2","c").replace("a3","d").replace("a4","e").replace("a5","f").replace("a6","g").replace("a7","h").replace("a8","i").replace("a9","j").replace("a10","k").replace("a11","l").replace("a12","m")
-        let newStrng1= newStrng.replace("b0","n").replace("b1","o").replace("b2","p").replace("b3","q").replace("b4","r").replace("b5","s").replace("b6","t").replace("b7","u").replace("b8","v").replace("b9","w").replace("b10","x").replace("b11","y").replace("b12","z")
-
-       // console.log(newStrng1) 
         let date = strarray.slice(64,72)
          let year = date.slice(0,4)
          let d = date.slice(4,6)
          let month = date.slice(6,8) 
          result.push(d,month,year)
-         newStrng1 = newStrng1.split("#"); 
-         //console.log(strarray) 
-         newStrng1.forEach(function (value, i) {
+         strarray = strarray.split("#"); 
+         
+          strarray.forEach(function (value, i) {
           if((i+1) % 3 === 0){
             let resultBottom = value.split(',')
             result1.push(resultBottom)
-            // console.log(resultBottom) 
           }
           
       });
       
     }
-    
   let firstName = result1[0][0]
   let firstP = ['1st Prize',firstName]
   let secondName = result1[1][0]

@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
       $('#sabah88').each((i, el) => {
-        let resultDate = $(el).find('.resultdrawdate').text().replace(/\s/g, ' ');
+        let resultDate = $(el).find('.resultdrawdate').text().replace(/\s/g, '    ');
         let resultDraw = resultDate.substr(resultDate.indexOf(")") + 1)
         resultDate2.push(resultDraw)
         resultDate = resultDate.slice(6,16)
@@ -41,12 +41,11 @@ router.get('/', (req, res, next) => {
         //   arr.push(resultTop3d.substr(0,3));
         //   resultTop3d.substr(3)
         // }
-        // console.log(resultTop)
+        // console.log(arr)
         multiple.push(arr)
-        let arr2 = resultTop.slice(0,3)
-        console.log(resultTop.slice(0,3))
+        // console.log(multiple)
         let page = arr
-        page = arr2.map((r, index) => {
+        page = page.map((r, index) => {
           if (index === 0) {
             return ['1ST Prize', r]
           } else if (index === 1) {
@@ -58,8 +57,7 @@ router.get('/', (req, res, next) => {
         })
         second = page
         resultTable = arr
-        newData.push(arr2)
-        // console.log(newData)
+        newData.push(resultTable)
 
         let resultBottomFirst= $(el).find('.resultbottom').text()
         let resultBottom1 = resultBottomFirst.match(/\d{4}|[^\d]/g).slice(0,5)
@@ -68,7 +66,7 @@ router.get('/', (req, res, next) => {
         let specialData2 = resultBottom2.map(s => /^(?=.* )(?=.*\d)[\d\s]+$/.test(s) ? '----' : s);
         let resultBottom3 = resultBottomFirst.match(/\d{4}|[^\d]/g).slice(10,13)
         let specialData3 = resultBottom3.map(s => /^(?=.* )(?=.*\d)[\d\s]+$/.test(s) ? '----' : s);
-         
+
         resultTable2.push(specialData1,specialData2,specialData3) 
        
         let resultBottomSecond = $(el).find('.resultbottom').text()
