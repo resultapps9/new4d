@@ -36,7 +36,7 @@ router.get('/:id?', (req, res, next) => {
         resultTable7.push(resultBottomSecond)
       })
 
-      console.log(resultTable2)
+      console.log(resultTable2[6])
       let first = resultTable2[6]+ ''
       console.log(first)
       let date = first.slice(22, 32)
@@ -46,8 +46,8 @@ router.get('/:id?', (req, res, next) => {
       let thirdPrize = ''
       if (date === theirDate) {
        draw = first.slice(38, 54)
-       firstPrize = first.slice(63, 67)
-       secondPrize = first.slice(84, 88)
+       firstPrize = first.slice(66, 70)
+       secondPrize = first.slice(82, 86)
        thirdPrize = first.slice(98, 102)
       }
       let firstP = ['1st Prize', firstPrize]
